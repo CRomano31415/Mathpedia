@@ -1,29 +1,33 @@
-<h2>Sign up</h2>
+ <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Wiki Toolbox</h1>
+    <p class="lead">A Collaborative Space to create and share ideas</p>
+  </div>
+  <div class="container col-md-3 mx-auto pt-md-5 pb-md-4">
+  <h1 class="h3 mb-3 font-weight-normal">Create an Account</h1>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
+    <div class="field">
+      <%= f.label :email, :class => 'sr-only' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email' %>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
+    <div class="field">
+    <%= f.label :password, :class => 'sr-only' %>
+    <%= f.password_field :password, autocomplete: "off", placeholder: 'Password' %>    
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
+      <small>(<%= @minimum_password_length %> characters minimum)</small>
+    <% end %>
+   </div>
+  
+     <div class="field">
+      <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Confirm Password' %>
+     </div>
+    <br />
+    <div class="actions">
+      <%= f.submit "Sign up", :class => 'btn btn-md btn-primary'%>
+    </div>
+  <% end %>
+<br>
 <%= render "devise/shared/links" %>
+</div>
