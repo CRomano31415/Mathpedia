@@ -1,26 +1,26 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Wiki Toolbox</h1>
+    <p class="lead">A Collaborative Space to create and share ideas</p>
   </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), :class => 'form-signin') do |f| %>
+  <div class="container col-md-3 mx-auto pt-md-5 pb-md-4">
+  <h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
+     <div class="field">
+        <%= f.label :email, :class => 'sr-only' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email' %>
+     </div>
+      <div class="field">
+      <%= f.label :password, :class => 'sr-only' %>
+      <%= f.password_field :password, autocomplete: "off", placeholder: 'Password' %>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+    <% if devise_mapping.rememberable? %>
+      <div class="field mb-3">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end %>
+      <%= f.submit "Log in", :class => 'btn btn-md btn-primary' %>
+  <% end %>
+<br>
+ <%= render "devise/shared/links" %>
+</div>
