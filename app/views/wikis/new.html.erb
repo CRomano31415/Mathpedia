@@ -1,2 +1,15 @@
-<h1>Wikis#new</h1>
-<p>Find me in app/views/wikis/new.html.erb</p>
+<h1>Create a New Wiki</h1>
+<%= form_for @wiki do |f| %>
+
+<%= f.label :title %>
+<%= f.text_field :title %>
+
+<%= f.label :body %>
+<%= f.text_area :body %>
+
+<%= f.label :private, "This is a Private Wiki" %>
+<%= f.check_box :private %>
+
+<%= f.submit "Save" %>
+
+<% end %>
