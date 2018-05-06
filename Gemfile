@@ -15,6 +15,7 @@ group :development do
    gem 'sqlite3'
    gem 'web-console', '~> 2.0'
    gem 'listen', '~> 3.0.5'
+   gem 'faker'
 end
 
 group :development, :test do
@@ -36,3 +37,4 @@ gem 'devise'
 gem 'figaro', '1.0'
 gem 'bootstrap-sass'
 gem 'pundit'
+
