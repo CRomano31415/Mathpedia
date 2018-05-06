@@ -2,6 +2,7 @@ class WikisController < ApplicationController
 
   def index
   	@wikis = Wiki.all 
+    authorize @wikis 
   end
 
   def show
@@ -14,9 +15,6 @@ class WikisController < ApplicationController
 
   def create
   	@wiki = Wiki.new(wiki_params)
-  	# @wiki.title = params[:wiki][:title]
-  	# @wiki.body = params[:wiki][:body]
-  	# @wiki.private = params[:wiki][:private]
     @wiki.user = current_user 
 
 
