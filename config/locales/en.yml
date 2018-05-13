@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+  pundit:
+    default: 'You cannot perform this action.'
+    wiki_policy:
+      edit?: 'You cannot edit this wiki!'
+      destroy?: 'You cannot destroy this wiki!'

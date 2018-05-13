@@ -7,22 +7,37 @@ class WikiPolicy < ApplicationPolicy
 	end 
 
 	def index?
-		user.present?
+		true
 	end 
 
-	def show
-		user.present?
+	def show?
+	   user.present?
 	end 
+
+	def create?
+	   user.present?
+	end
+
+	def new?
+	  create?
+	end
+
 
 	def update?
-		user.admin? or not wiki.published?
+		(user.admin? || @wiki.user == user) && user != nil
+	end 
+
+	def edit?
+		(user.admin? || @wiki.user == user) && user != nil
 	end 
 
 	def destroy?
-		user == wiki.user || user.role == 'admin'
+		(user.admin? || @wiki.user == user) && user != nil
 	end 
 
 	def wiki
 		record
 	end 
+
+	
 end 
