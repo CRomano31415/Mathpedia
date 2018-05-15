@@ -1,16 +1,20 @@
-
 <%= form_for @wiki do |f| %>
-
-<%= f.label :title %>
-<%= f.text_field :title %>
-
-<%= f.label :body %>
-<%= f.text_area :body %>
-
-<% if current_user.admin? || current_user.premium? %>
-<%= f.label :private, "This is a Private Wiki" %>
-<%= f.check_box :private %>
+  <div class="panel panel-default">
+	<div class="panel-heading">
+ 		<%= f.label :title%>
+ 	    <%= f.text_field :title%>
+ 	    <br>
+		<%= f.label :body%>
+		<%= f.text_area :body%>
+  	</div>
+  	<div class="panel-body">
+  		Preview:
+	</div>
+  </div>
+	<% if current_user.admin? || current_user.premium? %>
+	<%= f.label :private, "This is a Private Wiki" %>
+	<%= f.check_box :private %>
+	<% end %>
+	<%= f.submit "Save", :class => 'btn btn-md btn-primary' %>
 <% end %>
-<%= f.submit "Save" %>
 
-<% end %>
