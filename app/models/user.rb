@@ -5,8 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :wikis, dependent: :destroy
+  enum role: [:member, :premium, :admin]
+
   before_save { self.role ||= :member }
 
-  enum role: [:member, :premium, :admin]
 
 end
