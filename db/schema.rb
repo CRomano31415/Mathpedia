@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180505184041) do
+ActiveRecord::Schema.define(version: 20180520163121) do
+
+  create_table "collaborations", force: :cascade do |t|
+    t.integer "wiki_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_collaborations_on_user_id"
+    t.index ["wiki_id"], name: "index_collaborations_on_wiki_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -33,7 +42,7 @@ ActiveRecord::Schema.define(version: 20180505184041) do
   create_table "wikis", force: :cascade do |t|
     t.string "title"
     t.text "body"
-    t.boolean "private"
+    t.boolean "private", default: false
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

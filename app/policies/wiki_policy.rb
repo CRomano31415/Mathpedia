@@ -7,11 +7,11 @@ class WikiPolicy < ApplicationPolicy
 	end 
 
 	def index?
-		true
+		true 
 	end 
 
 	def show?
-	   user.present?
+	   true
 	end 
 
 	def create?
@@ -28,7 +28,7 @@ class WikiPolicy < ApplicationPolicy
 	end 
 
 	def edit?
-		(user.admin? || @wiki.user == user) && user != nil
+		update?
 	end 
 
 	def destroy?

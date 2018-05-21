@@ -5,8 +5,9 @@
           <h1 class="display-5 text-center">Edit Wiki</h1>
         </p>
         <br />
-<%= render 'wikis/form', wiki: Wiki.new, wiki: @wiki %>
-      </div>
+        <%= render 'wikis/form', wiki: @wiki %>
+        <%= render 'collaborations/form', wiki: @wiki, collaboration: @collaboration %>
+       </div>
     </div>
   </div>
 

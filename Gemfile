@@ -38,4 +38,4 @@ gem 'figaro', '1.0'
 gem 'bootstrap-sass'
 gem 'pundit'
 gem 'stripe'
-
+gem 'redcarpet'

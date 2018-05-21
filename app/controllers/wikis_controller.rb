@@ -1,10 +1,13 @@
 class WikisController < ApplicationController
 
-  after_action :verify_authorized, except: :index
+ before_action :authenticate_user!, except: [:index, :show]
 
   def index
-  	@wikis = Wiki.all 
-    authorize @wikis
+     if current_user.member?
+       @wikis = Wiki.where(private: false) #this will only display public wikis to members
+     else 
+       @wikis = Wiki.all 
+     end
   end
 
   def show
@@ -21,8 +24,6 @@ class WikisController < ApplicationController
   	@wiki = Wiki.new(wiki_params)
     @wiki.user = current_user 
 
-    authorize @wiki 
-
   	if @wiki.save
   		flash[:notice] = "Wiki was saved."
   		redirect_to @wiki 
@@ -35,8 +36,8 @@ class WikisController < ApplicationController
   def update
   	@wiki = Wiki.find(params[:id])
     authorize @wiki 
-    @wiki.assign_attributes(wiki_params)
 
+    @wiki.assign_attributes(wiki_params)
 
   	if @wiki.save
   		flash[:notice] = "Wiki was updated"
@@ -50,6 +51,7 @@ class WikisController < ApplicationController
 
   def edit
   	@wiki = Wiki.find(params[:id])
+    @collaboration = Collaboration.new
     authorize @wiki 
   end
 
@@ -66,8 +68,10 @@ class WikisController < ApplicationController
   		render :show
   	end 
   end 
+  
+  private 
 
   def wiki_params
-    params.require(:wiki).permit(:title, :body, :user)
+    params.require(:wiki).permit(:title, :body, :private)
   end
 end

@@ -1,12 +1,21 @@
 Rails.application.routes.draw do
 
-  
   devise_for :users
   
   resources :wikis
+  
+  resources :wikis do
+      resources :collaborations, only: [:new, :create, :destroy]
+  end
 
   resources :charges, only: [:new, :create]
   
+  resources :users, only: [:index, :show] do
+    member do
+      post :downgrade
+    end
+  end 
+
   get 'about' => 'welcome#about' 
 
   root 'welcome#index'

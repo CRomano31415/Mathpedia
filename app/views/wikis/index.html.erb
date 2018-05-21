@@ -2,5 +2,5 @@
 <div><h1>Wikis <span class='badge'><%= @wikis.count %></span></h1></div>
 
 <% @wikis.each do |wiki| %>
-	<%= link_to wiki.title, wiki, :class => 'list-group-item' %>
+	<%= link_to markdown(wiki.title), wiki, :class => 'list-group-item' %>
 <% end %>
