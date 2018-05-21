@@ -3,11 +3,12 @@ class WikisController < ApplicationController
  before_action :authenticate_user!, except: [:index, :show]
 
   def index
-     if current_user.member?
-       @wikis = Wiki.where(private: false) #this will only display public wikis to members
-     else 
-       @wikis = Wiki.all 
-     end
+     @wikis = policy_scope(Wiki)
+     # if current_user.member?
+     #   @wikis = Wiki.where(private: false) #this will only display public wikis to members
+     # else 
+     #   @wikis = Wiki.all 
+     # end
   end
 
   def show
