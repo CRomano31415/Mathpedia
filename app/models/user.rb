@@ -14,7 +14,6 @@ class User < ApplicationRecord
 
   def downgrade!
     wikis.update_all(private: false)
-    self.update_attribute(:role, 'member')
     self.member!
   end
 
