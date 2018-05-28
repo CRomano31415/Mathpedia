@@ -4,11 +4,6 @@ class WikisController < ApplicationController
 
   def index
      @wikis = policy_scope(Wiki)
-     # if current_user.member?
-     #   @wikis = Wiki.where(private: false) #this will only display public wikis to members
-     # else 
-     #   @wikis = Wiki.all 
-     # end
   end
 
   def show
@@ -22,9 +17,9 @@ class WikisController < ApplicationController
   end
 
   def create
-  	@wiki = Wiki.new(wiki_params)
-    @wiki.user = current_user 
-
+  	@wiki = current_user.wikis.new(wiki_params)
+    authorize @wiki 
+    
   	if @wiki.save
   		flash[:notice] = "Wiki was saved."
   		redirect_to @wiki 
