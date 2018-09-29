@@ -43,7 +43,7 @@
   Premium Membership is $1.00 one-time fee
 <% end %>
 <% if @user.premium? %>
-  <%= link_to "Downgrade Account", downgrade_user_path, method: :wiki, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to downgrade your account? All of your private wikis will be made public, and your account will be charged again to upgrade your account to Premium.' } %>
+  <%= link_to "Downgrade Account", downgrade_user_path(@user), method: :wiki, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to downgrade your account? All of your private wikis will be made public, and your account will be charged again to upgrade your account to Premium.' } %>
 <% end %>
 
 <h3>Cancel my account</h3>

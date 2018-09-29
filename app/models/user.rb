@@ -4,9 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
          
-  has_many :wikis, dependent: :destroy
   has_many :collaborations
-  has_many :shared_wikis, through: :collaborations, source: :wiki 
+  has_many :wikis, through: :collaborations, source: :wiki,  dependent: :destroy
+  # has_many :shared_wikis, through: :collaborations, source: :wiki 
   
   enum role: [:member, :premium, :admin]
 
